@@ -1,0 +1,12 @@
+sensors:
+  temperature:
+    min: -20.0
+    max: 100.0
+    timeout_ms: 500
+
+motors:
+  max_speed_percent: 100
+  allowed_directions:
+    - forward
+    - reverse
+    - stop
