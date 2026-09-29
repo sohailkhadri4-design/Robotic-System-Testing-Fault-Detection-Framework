@@ -72,6 +72,16 @@ PYTHONPATH=. python examples/sample_test_run.py
 pytest -q
 ```
 
+## Project visuals
+
+### Automated test run
+
+![Automated test run](docs/test_run.svg)
+
+### Fault detection scenarios
+
+![Fault detection scenarios](docs/fault_detection.svg)
+
 ## Continuous integration
 
 GitHub Actions runs the pytest suite automatically on pushes and pull requests targeting `main`.
