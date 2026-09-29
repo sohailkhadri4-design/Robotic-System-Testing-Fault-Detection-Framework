@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620">
+<rect width="1200" height="620" fill="#f8fafc"/>
+<text x="600" y="55" text-anchor="middle" font-family="Arial" font-size="30" font-weight="700" fill="#0f172a">Fault Injection &amp; Classification</text>
+<text x="600" y="87" text-anchor="middle" font-family="Arial" font-size="15" fill="#64748b">Example software-level scenarios supported by the reference framework</text>
+<g font-family="Arial">
+<rect x="75" y="135" width="1050" height="70" rx="12" fill="#e2e8f0"/>
+<text x="105" y="178" font-size="19" font-weight="700" fill="#0f172a">Sensor unavailable</text>
+<text x="1085" y="178" text-anchor="end" font-family="monospace" font-size="18" fill="#334155">→ SENSOR_UNAVAILABLE</text>
+<rect x="75" y="235" width="1050" height="70" rx="12" fill="#e2e8f0"/>
+<text x="105" y="278" font-size="19" font-weight="700" fill="#0f172a">Out-of-range reading</text>
+<text x="1085" y="278" text-anchor="end" font-family="monospace" font-size="18" fill="#334155">→ INVALID_SENSOR_READING</text>
+<rect x="75" y="335" width="1050" height="70" rx="12" fill="#e2e8f0"/>
+<text x="105" y="378" font-size="19" font-weight="700" fill="#0f172a">Invalid motor command</text>
+<text x="1085" y="378" text-anchor="end" font-family="monospace" font-size="18" fill="#334155">→ MOTOR_COMMAND_INVALID</text>
+<rect x="75" y="435" width="1050" height="70" rx="12" fill="#e2e8f0"/>
+<text x="105" y="478" font-size="19" font-weight="700" fill="#0f172a">Controller unavailable</text>
+<text x="1085" y="478" text-anchor="end" font-family="monospace" font-size="18" fill="#334155">→ MOTOR_CONTROLLER_FAULT</text>
+</g>
+<text x="600" y="565" text-anchor="middle" font-family="Arial" font-size="13" fill="#64748b">Illustrative project graphic • hardware-specific faults require physical adapters and testing</text>
+</svg>
