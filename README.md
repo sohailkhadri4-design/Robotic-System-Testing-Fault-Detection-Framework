@@ -3,6 +3,7 @@
 ![Python](https://img.shields.io/badge/Python-3.10%2B-blue)
 ![Platform](https://img.shields.io/badge/Platform-Raspberry%20Pi%20%7C%20Linux-lightgrey)
 ![Testing](https://img.shields.io/badge/Testing-pytest-green)
+![CI](https://github.com/sohailkhadri4-design/Robotic-System-Testing-Fault-Detection-Framework/actions/workflows/tests.yml/badge.svg)
 
 A Python-based reference framework for testing sensors, motor-control interfaces, and embedded robotic subsystems on Raspberry Pi/Linux.
 
@@ -17,21 +18,11 @@ A Python-based reference framework for testing sensors, motor-control interfaces
 - Produce structured logs for troubleshooting.
 - Separate hardware interfaces, validation, fault detection, and tests.
 
-## Architecture
+## System architecture
 
-```text
-Test Scenarios
-      |
-      v
-Validation Layer
-  |          |
-Sensors     Motors
-  |          |
-  +----> Fault Detection
-             |
-             v
-      Structured Logging
-```
+![System architecture](docs/system_architecture.svg)
+
+The framework separates test scenarios, sensor and motor interfaces, validation, fault detection, structured logging, and automated tests. The current implementation uses deterministic simulated interfaces; Raspberry Pi hardware adapters can be added later.
 
 ## Repository structure
 
@@ -57,10 +48,14 @@ configs/
 └── test_config.yaml
 docs/
 ├── system_architecture.md
+├── system_architecture.svg
 ├── test_plan.md
 └── fault_scenarios.md
 examples/
 └── sample_test_run.py
+.github/
+└── workflows/
+    └── tests.yml
 ```
 
 ## Quick start
@@ -76,6 +71,18 @@ pip install -r requirements.txt
 PYTHONPATH=. python examples/sample_test_run.py
 pytest -q
 ```
+
+## Continuous integration
+
+GitHub Actions runs the pytest suite automatically on pushes and pull requests targeting `main`.
+
+The workflow:
+1. Checks out the repository.
+2. Sets up Python 3.11.
+3. Installs project dependencies.
+4. Runs `pytest -q`.
+
+This provides an automated software-level verification step for changes to the framework.
 
 ## Fault scenarios
 
@@ -111,7 +118,11 @@ Potential extensions:
 - Motor-driver integration
 - Watchdog monitoring
 - JSON test reports
-- Continuous integration
+- Additional CI checks
+
+## License
+
+This project is released under the MIT License. See [LICENSE](LICENSE).
 
 ## Author
 
