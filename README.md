@@ -5,24 +5,33 @@
 ![Testing](https://img.shields.io/badge/Testing-pytest-green)
 ![CI](https://github.com/sohailkhadri4-design/Robotic-System-Testing-Fault-Detection-Framework/actions/workflows/tests.yml/badge.svg)
 
-A Python-based reference framework for testing sensors, motor-control interfaces, and embedded robotic subsystems on Raspberry Pi/Linux.
+A Python-based **software test and fault-detection framework** for robotic subsystems. The project focuses on repeatable validation of sensor readings, motor commands, fault classification, logging, integration tests, and CI.
 
-> **Reference implementation:** hardware-specific I/O is represented through deterministic simulated interfaces so the framework can be executed without the original robot hardware. No physical test results are claimed.
+> **Verification boundary:** the current implementation uses deterministic simulated interfaces. It demonstrates automated software testing and fault injection; it does not claim physical robot test results.
 
-## Project goals
+## What the framework tests
 
-- Validate sensor readings against expected ranges.
-- Validate motor-control commands.
-- Inject common sensor and motor faults.
-- Detect and classify faults using explicit rules.
-- Produce structured logs for troubleshooting.
-- Separate hardware interfaces, validation, fault detection, and tests.
+- Sensor availability and reading validity
+- Motor-command validity and controller faults
+- Repeatable fault injection
+- Fault classification
+- Structured JSON-line logging
+- Functional and integration tests
+- Automated pytest execution through GitHub Actions
 
 ## System architecture
 
 ![System architecture](docs/system_architecture.svg)
 
-The framework separates test scenarios, sensor and motor interfaces, validation, fault detection, structured logging, and automated tests. The current implementation uses deterministic simulated interfaces; Raspberry Pi hardware adapters can be added later.
+The framework separates:
+1. Test scenarios
+2. Sensor and motor interfaces
+3. Validation rules
+4. Fault classification
+5. Structured logging
+6. Automated tests
+
+This separation makes failures easier to reproduce and troubleshoot.
 
 ## Repository structure
 
@@ -39,23 +48,24 @@ src/
 │   └── fault_types.py
 └── logging/
     └── test_logger.py
+
 tests/
 ├── test_sensors.py
 ├── test_motor_control.py
 ├── test_fault_detection.py
 └── test_integration.py
+
 configs/
 └── test_config.yaml
+
 docs/
 ├── system_architecture.md
 ├── system_architecture.svg
 ├── test_plan.md
 └── fault_scenarios.md
+
 examples/
 └── sample_test_run.py
-.github/
-└── workflows/
-    └── tests.yml
 ```
 
 ## Quick start
@@ -72,67 +82,47 @@ PYTHONPATH=. python examples/sample_test_run.py
 pytest -q
 ```
 
-## Project visuals
-
-### Automated test run
-
-![Automated test run](docs/test_run.svg)
-
-### Fault detection scenarios
-
-![Fault detection scenarios](docs/fault_detection.svg)
-
-## Continuous integration
-
-GitHub Actions runs the pytest suite automatically on pushes and pull requests targeting `main`.
-
-The workflow:
-1. Checks out the repository.
-2. Sets up Python 3.11.
-3. Installs project dependencies.
-4. Runs `pytest -q`.
-
-This provides an automated software-level verification step for changes to the framework.
-
 ## Fault scenarios
 
-| Scenario | Expected detection |
+| Scenario | Expected classification |
 |---|---|
 | Sensor unavailable | `SENSOR_UNAVAILABLE` |
 | Out-of-range reading | `INVALID_SENSOR_READING` |
 | Invalid motor command | `MOTOR_COMMAND_INVALID` |
 | Motor controller unavailable | `MOTOR_CONTROLLER_FAULT` |
 
-## Testing approach
+## Continuous integration
 
-The framework uses deterministic simulated devices so fault conditions can be reproduced consistently through automated software tests.
+GitHub Actions is configured to install the Python dependencies and run `pytest -q` on pushes and pull requests targeting `main`.
 
-The project demonstrates:
+The CI workflow is a **software-level verification step**. It should not be interpreted as proof of physical sensor or motor behavior.
 
-- Functional testing
-- Integration testing
-- Fault injection
-- Structured logging
-- Sensor validation
-- Motor-control validation
-- Troubleshooting and fault classification
+## Why this project matters for embedded work
+
+The project demonstrates a testing mindset around embedded systems:
+
+- Define expected behavior before testing
+- Reproduce failures deterministically
+- Separate hardware interfaces from test logic
+- Classify faults explicitly
+- Record evidence for troubleshooting
+- Automate regression checks
 
 ## Future hardware integration
 
-The simulated interfaces can be replaced with Raspberry Pi GPIO, I2C, SPI, PWM, and motor-driver implementations while keeping the higher-level validation and fault-detection logic.
+The simulated interfaces can later be replaced with Raspberry Pi GPIO, I2C, SPI, PWM, and motor-driver adapters while retaining the higher-level validation and fault-detection layers.
 
 Potential extensions:
-
 - Hardware-in-the-loop testing
 - Real sensor adapters
 - Motor-driver integration
 - Watchdog monitoring
-- JSON test reports
+- Test-report generation
 - Additional CI checks
 
 ## License
 
-This project is released under the MIT License. See [LICENSE](LICENSE).
+MIT License. See [LICENSE](LICENSE).
 
 ## Author
 
